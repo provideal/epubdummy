@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.1.3'
 gem 'mongoid', '~> 2.3.0'
-gem 'bson_ext', '~> 1.4.0'
+gem 'bson_ext', '~> 1.5.0'
 gem 'jquery-rails'
 gem 'mini_magick', '~> 3.3.0'
 gem 'carrierwave', '~> 0.5.0'
