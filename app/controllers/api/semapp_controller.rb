@@ -2,12 +2,12 @@ class Api::SemappController < ApplicationController
 
   def index
     semapps = Semapp.all
-    render json: semapps.to_json(except: [:epubs])
+    render xml: semapps.to_xml
   end
 
   def show
     semapp = Semapp.find(params[:semapp_id])
-    render json: semapp.to_json()
+    render xml: semapp.to_xml(epubs: true)
   end
 
 end

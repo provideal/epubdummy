@@ -1,5 +1,6 @@
 class Annotation
   include Mongoid::Document
+  include Mongoid::Timestamps
 
   # Relations
   embedded_in :epub
