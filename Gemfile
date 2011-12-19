@@ -1,13 +1,13 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.1.3'
-gem 'mongoid', '~> 2.3'
-gem 'bson_ext', '~> 1.4'
+gem 'mongoid', '~> 2.3.0'
+gem 'bson_ext', '~> 1.4.0'
 gem 'jquery-rails'
-gem 'mini_magick', '~> 3.3'
-gem 'carrierwave', '~> 0.5'
+gem 'mini_magick', '~> 3.3.0'
+gem 'carrierwave', '~> 0.5.0'
 gem 'carrierwave-mongoid', '~> 0.1.3', require: 'carrierwave/mongoid'
-gem 'simple_form', '~> 1.5'
+gem 'simple_form', '~> 1.5.0'
 gem 'bcrypt-ruby'
 gem 'redcarpet'
 
@@ -26,4 +26,8 @@ end
 group :test do
   # Pretty printed test output
   gem 'turn', '~> 0.8.3', :require => false
+end
+
+group :production do
+  gem 'therubyracer'
 end
