@@ -4,7 +4,7 @@ class Api::AnnotationController < ApplicationController
     semapp = Semapp.find(params[:semapp_id])
     epub   = semapp.epubs.find(params[:epub_id])
     epub.annotations << Annotation.new(data: params[:data])
-    render xml: epub.to_xml
+    render nothing: true
   end
 
   def update
@@ -12,7 +12,7 @@ class Api::AnnotationController < ApplicationController
     epub       = semapp.epubs.find(params[:epub_id])
     annotation = epub.annotations.find(params[:id])
     annotation.update_attributes(params[:annotation])
-    render xml: epub.to_xml
+    render nothing: true
   end
 
 end
