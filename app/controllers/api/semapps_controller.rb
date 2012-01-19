@@ -1,4 +1,4 @@
-class Api::SemappController < ApplicationController
+class Api::SemappsController < Api::ApplicationController
 
   def index
     semapps = Semapp.all
@@ -6,7 +6,7 @@ class Api::SemappController < ApplicationController
   end
 
   def show
-    semapp = Semapp.find(params[:semapp_id])
+    semapp = Semapp.find(params[:id])
     render xml: semapp.to_xml(epubs: true)
   end
 

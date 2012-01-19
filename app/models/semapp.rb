@@ -3,6 +3,7 @@ class Semapp
   include Mongoid::Timestamps
 
   # Relations
+  belongs_to :user
   embeds_many :epubs
 
   # Fields

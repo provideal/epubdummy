@@ -8,6 +8,7 @@ gem 'mini_magick', '~> 3.3.0'
 gem 'carrierwave', '~> 0.5.0'
 gem 'carrierwave-mongoid', '~> 0.1.3', require: 'carrierwave/mongoid'
 gem 'simple_form', '~> 1.5.0'
+gem 'cancan', '~> 1.6.7'
 gem 'bcrypt-ruby'
 gem 'redcarpet'
 
