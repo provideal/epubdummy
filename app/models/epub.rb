@@ -28,7 +28,7 @@ class Epub
       end
       xml.annotations do
         annotations.each do |annotation|
-          annotation.to_xml(:skip_instruct => true)
+          xml << annotation.to_xml(:skip_instruct => true)
         end
       end
     end

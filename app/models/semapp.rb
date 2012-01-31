@@ -22,7 +22,7 @@ class Semapp
       # epubs
       xml.epubs do
         epubs.each do |epub|
-          epub.to_xml(:skip_instruct => true)
+          xml << epub.to_xml(:skip_instruct => true)
         end
       end if options[:epubs] == true
     end
