@@ -1,7 +1,8 @@
-class User
-  include Mongoid::Document
-  include Mongoid::Timestamps
+class User < ActiveRecord::Base
+
+  # Password security
   include ActiveModel::SecurePassword
+  has_secure_password
 
   # User roles.
   # @see http://wiki.github.com/ryanb/cancan/role-based-authorization
@@ -9,14 +10,6 @@ class User
 
   # Relations
   has_many :semapps
-
-  # Fields
-  field :login,           type: String, index: true
-  field :firstname,       type: String
-  field :lastname,        type: String
-  field :password_digest, type: String
-  field :roles_mask,      type: Integer
-  has_secure_password
 
   # Validations
   validates_presence_of   :login

@@ -1,6 +1,4 @@
-class Semapp
-  include Mongoid::Document
-  include Mongoid::Timestamps
+class Semapp < ActiveRecord::Base
 
   # Relations
   belongs_to :user
@@ -8,8 +6,5 @@ class Semapp
 
   # Validations
   validates_presence_of :user
-
-  # Fields
-  field :name, type: String
 
 end

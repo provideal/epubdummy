@@ -16,14 +16,14 @@ class Api::AnnotationsController < Api::ApplicationController
     @scenario    = Scenario.find(params[:scenario_id])
     @annotations = @scenario.annotations
 
-    if @scenario.type == 2
+    if @scenario.version == 2
       @annotations = @annotations.where(user_id: current_user.id)
     end
   end
 
   def show
     @annotation = Annotation.find(params[:id])
-    if @annotation.scenario.type == 2
+    if @annotation.scenario.version == 2
       authorize! :read, @annotation
     end
   end

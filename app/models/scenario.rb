@@ -1,17 +1,11 @@
-class Scenario
-  include Mongoid::Document
-  include Mongoid::Timestamps
+class Scenario < ActiveRecord::Base
 
   # Relations
-  has_many   :annotations
   belongs_to :epub
-
-  # Fields
-  field :name,   type: String
-  field :type,   type: Integer
-  field :active, type: Boolean, default: false
+  belongs_to :semapp
+  has_many   :annotations
 
   # Validations
-  validates_presence_of :name, :type
+  validates_presence_of :name, :version, :epub, :semapp
 
 end

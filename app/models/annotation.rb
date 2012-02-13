@@ -1,15 +1,10 @@
-class Annotation
-  include Mongoid::Document
-  include Mongoid::Timestamps
+class Annotation < ActiveRecord::Base
 
   # Relations
   belongs_to :user
   belongs_to :scenario
 
-  validates_presence_of :user
-  validates_presence_of :scenario
-
-  # Fields
-  field :data, type: String
+  # Validations
+  validates_presence_of :user, :scenario
 
 end

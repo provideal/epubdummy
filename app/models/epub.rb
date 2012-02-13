@@ -1,15 +1,15 @@
-class Epub
-  include Mongoid::Document
-  include Mongoid::Timestamps
+class Epub < ActiveRecord::Base
 
   # Relations
   has_and_belongs_to_many :semapps
   has_many :scenarios
 
-  # Fields
-  field :name, type: String
-
   # Uploader
   mount_uploader :file, EpubUploader
+
+
+  def annotations
+    Annotation.joins(:scenario => :epub).where('epubs.id' => self.id)
+  end
 
 end
