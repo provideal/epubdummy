@@ -1,41 +1,52 @@
+
+# Curl Examples
+#
+# Create:
+#   curl --user admin:admin --data "data='<annotation></annotation>'" http://localhost:3001/api/scenarios/:scenario_id/annotations
+#
+# Update:
+#   curl --user admin:admin -X PUT --data "data='<annotation></annotation>'" http://localhost:3001/api/annotations/:id
+#
+# Delete:
+#   curl --user admin:admin -X DELETE http://localhost:3001/api/annotations/:id
+
 class Api::AnnotationsController < Api::ApplicationController
 
-  before_filter :setup_semapp_and_epub
-
-
   def index
-    @annotations = @epub.annotations
-    authorize! :read, @annotations
-    render xml: @annotations.to_xml
+    @scenario    = Scenario.find(params[:scenario_id])
+    @annotations = @scenario.annotations
+
+    if @scenario.type == 2
+      @annotations = @annotations.where(user_id: current_user.id)
+    end
+  end
+
+  def show
+    @annotation = Annotation.find(params[:id])
+    if @annotation.scenario.type == 2
+      authorize! :read, @annotation
+    end
   end
 
   def create
     authorize! :create, Annotation
-    annotation = Annotation.new(data: params[:data], user_id: current_user.id)
-    @epub.annotations << annotation
-    annotation.save
-    render xml: annotation.to_xml
+
+    @scenario  = Scenario.find(params[:scenario_id])
+    @annotation = Annotation.new(user: current_user, data: params[:data])
+    @scenario.annotations << @annotation
   end
 
   def update
-    annotation = @epub.annotations.find(params[:id])
-    authorize! :update, annotation
-    annotation.update_attribute(:data, params[:data])
-    render xml: annotation.to_xml
+    @annotation = Annotation.find(params[:id])
+    authorize! :update, @annotation
+    @annotation.update_attribute(:data, params[:data])
   end
 
   def destroy
-    annotation = @epub.annotations.find(params[:id])
-    authorize! :update, annotation
-    annotation.destroy
+    @annotation = Annotation.find(params[:id])
+    authorize! :update, @annotation
+    @annotation.destroy
     render nothing: true
-  end
-
-  private
-
-  def setup_semapp_and_epub
-    @semapp = Semapp.find(params[:semapp_id])
-    @epub   = @semapp.epubs.find(params[:epub_id])
   end
 
 end

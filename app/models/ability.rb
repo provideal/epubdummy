@@ -8,8 +8,11 @@ class Ability
       can :manage, :all
     else
       can :read, :all
+      can :read, Scenario, active: true
       can :create, Annotation
-      can [:update, :destroy], Annotation, user_id: user.id.to_s
+      can [:update, :destroy], Annotation do |annotation|
+        annotation.user_id == user.id
+      end
     end
   end
 end

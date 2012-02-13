@@ -42,4 +42,5 @@ class User
   def is?(role)
     roles.include?(role.to_s)
   end
+
 end
