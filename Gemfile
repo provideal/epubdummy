@@ -11,6 +11,7 @@ gem 'rabl',                '~> 0.5.4'
 gem 'yajl-ruby',           '~> 1.1.0', require: 'yajl'
 gem 'jquery-rails'
 gem 'sqlite3'
+gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
