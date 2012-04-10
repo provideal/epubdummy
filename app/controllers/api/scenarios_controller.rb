@@ -12,5 +12,12 @@ class Api::ScenariosController < Api::ApplicationController
     @scenario = Scenario.find(params[:id])
     authorize! :read, @scenario
   end
+  
+  def update
+    @scenario = Scenario.find(params[:id])
+    if current_user.is?(:admin)
+      @scenario.update_attribute(:active, params[:active])
+    end
+  end
 
 end
